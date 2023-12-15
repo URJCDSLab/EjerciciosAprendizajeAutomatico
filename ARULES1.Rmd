@@ -1,0 +1,76 @@
+---
+title: "Ejercicio: Reglas de Asociación"
+date: "`r format(Sys.time(), '%B, %Y')`"
+author: "DSLab"
+mainfont: Roboto
+fontsize: 12pt
+output:
+   pdf_document:
+     latex_engine: xelatex
+---
+
+Considera la siguiente lista de compras:
+
+```{r eval=FALSE}
+# Lista de compras
+market_basket <-  
+  list(  
+  c("apple", "beer", "rice", "meat"),
+  c("apple", "beer", "rice"),
+  c("apple", "beer", "rice"),
+  c("apple", "beer"), 
+  c("apple", "pear"),
+  c("apple", "beer", "rice", "pear"),
+  c("milk", "beer", "rice", "meat"), 
+  c("apple", "beer", "rice"), 
+  c("apple", "rice", "pear"),
+  c("milk", "beer", "rice", "meat"), 
+  c("milk", "rice"), 
+  c("apple", "beer"),
+  c("milk", "rice"), 
+  c("milk", "beer"),
+  c("milk", "pear")
+  )
+
+# nombramos las compras (C1 a C10)
+names(market_basket) <- paste("C", c(1:8), sep = "")
+```
+
+1.  Carga los datos y explora su contenido. Importa las librerías `arules` y `arulesViz`. Carga los datos de la compra en un objeto de la "clase transacción" para poder analizar los datos. Para ello se utiliza la siguiente función del paquete arules:
+
+```{r eval=FALSE}
+ library(arules)
+
+trans <- as(market_basket, "transactions")
+```
+
+2.  Obten una lista de los productos en la cesta de la compra empleando la función `itemLabels`.
+
+3.  Como hay pocas transacciones puedes visualizarlas con la función `image`. ¿Qué porcentaje de celdas de la imagen está vacías?
+
+4.  Mediante la función `itemFrequencyPlot` puedes visualizar la frecuencia relativa de los productos.
+
+5.  Emplea la función `apriori` para analizar las reglas. Emplea `supp=0.3` y `conf=0.5`.
+
+6.  Inspecciona las reglas mediante la función `inspect`. ¿qué regla, con al menos dos productos, se encuentra en el mayor número de compras? ¿Qué confianza se tiene en que quien compra `apple` también incluya `rice` en su compra?
+
+7.  Emplea la siguiente función para averiguar qué compran los clientes además de comprar `beer`:
+
+```{r, echo=TRUE,warning=FALSE, eval=FALSE}
+beer_rules_lhs <- apriori(trans, 
+                          parameter = list(supp=0.3, conf=0.5, 
+                                         maxlen=10, 
+                                         minlen=2),
+                          appearance = list(lhs="beer", default="rhs"))
+```
+
+8.  Visualiza las reglas. Las técnicas basadas en grafos se centran en la relación entre los distintos elementos del conjunto de reglas. Representan las reglas (o conjuntos de reglas) como un gráfico en el que los elementos son vértices etiquetados y las reglas (o conjuntos de reglas) se representan como vértices conectados a los elementos mediante flechas. Emplea las siguientes instrucciones para obtener un gráfico de red que muestra las asociaciones entre los elementos seleccionados. Los círculos más grandes implican mayor apoyo, mientras que los círculos rojos implican mayor elevación.
+```{r eval=FALSE}
+subrules \<- head(rules, n=10, by = "confidence")
+plot(subrules, method = "graph", engine = "htmlwidget")
+```
+
+9. Intepreta el siguiente gráfico:
+```{r eval=FALSE}
+plot(subrules, method="paracoord")
+```

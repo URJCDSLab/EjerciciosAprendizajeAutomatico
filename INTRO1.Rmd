@@ -1,0 +1,38 @@
+---
+title: "Ejercicio: Proyectos de Ciencia de Datos"
+date: "`r format(Sys.time(), '%B, %Y')`"
+author: "DSLab"
+mainfont: Roboto
+fontsize: 12pt
+output:
+   pdf_document:
+     latex_engine: xelatex
+---
+
+Este ejercicio consiste en localizar un proyecto de Ciencia de Datos en alguna de las siguientes referencias:
+
+-   [Top 10 Data Science Case Studies Projects with Examples and Solutions in Python to inspire your data science learning in 2023.](https://www.projectpro.io/article/data-science-case-studies-projects-with-examples-and-solutions/519)
+
+-   [Data Science Case Studies: Solved and Explained](https://medium.com/analytics-vidhya/data-science-case-studies-solved-and-explained-7b077dc24531)
+
+-   [Data in Action: 7 Data Science Case Studies Worth Reading](https://www.springboard.com/blog/data-science/data-science-case-studies/)
+
+-   [Top 8 Data Science Case Studies for Data Science Enthusiasts](https://www.knowledgehut.com/blog/data-science/top-data-science-case-studies)
+
+
+
+Contesta a las siguientes preguntas:
+
+1.  ¿Cuál es el problema que se trata de resolver? ¿Qué preguntas de negocio son las más importantes?
+
+2.  ¿Cuál es el origen de los datos? Existían antes de plantear la pregunta o fueron resultado de una técnica de muestreo.
+
+3.  ¿Qué has podido averiguar sobre el proceso de preparación y enriquecimiento de los datos?
+
+4.  ¿Qué técnicas de Aprendizaje Automático (Supervisado o no supervisado) han sido empleadas?
+
+5.  ¿Cuál ha sido el rendimiento del modelo?
+
+6.  ¿Has podido averiguar cómo se presentaron los datos al cliente?
+
+7.  Finalmente, ¿se puso en producción el modelo resultante? ¿sigue funcionando?

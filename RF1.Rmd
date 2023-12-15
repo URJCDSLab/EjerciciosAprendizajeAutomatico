@@ -1,0 +1,32 @@
+---
+title: "Ejercicio: Detección Churn ACME Telephone"
+date: "`r format(Sys.time(), '%B, %Y')`"
+author: "DSLAB"
+mainfont: Roboto
+fontsize: 12pt
+output:
+   pdf_document:
+     latex_engine: xelatex
+---
+
+En este ejemplo, vamos a trabajar con el dataset ACMETelephoneABT.csv (Kelleher,
+Namee, and D’Arcy 2015).
+Pasos:
+
+1. Limpieza de los datos.
+
+2. Dividimos los datos en 70% para grupo de training y 30% para grupo de testing.
+
+3. Sobre el dataset de training:
+    1. Transformar las variables, imputar datos (si procede).
+    2. Proponer un modelo inicial (e.g. regresión logística).
+    3. Evaluar inicialmente el modelo mediante los resultados básicos ofrecidos por summary(model).
+
+4. Sobre el dataset de testing:
+    1. Transformar las variables, imputar datos (si procede), siguiendo las mismas operaciones que para el caso de training.
+    2. Usar el modelo propuesto para predecir si el cliente se va o no de la compañía, usando para ello el dataset de testing.
+    3. Comparar con los datos de la columna real churn en los datos de testing, para comprobar el porcentaje de aciertos/fallos.
+
+5. Decidir siguiendo criterios contrastados (con la teoría vista hasta el momento),
+qué variables incluimos en el modelo predictivo y cuáles no.
+

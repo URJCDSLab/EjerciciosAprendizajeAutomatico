@@ -1,0 +1,24 @@
+---
+title: "Ejercicio: EDA"
+date: "`r format(Sys.time(), '%B, %Y')`"
+author: "DSLab"
+mainfont: Roboto
+fontsize: 12pt
+output:
+   pdf_document:
+     latex_engine: xelatex
+---
+***
+
+Utilizar el dataframe denominado *airquality* de la librería
+de R *datasets* para responder a las siguientes cuestiones:
+
+* ¿Cuántos campos y observaciones tiene el dataframe?. Utilizar las funciones *head* y *dim*.
+* Evaluar el dataframe con la función *summary*
+    + ¿Tiene observaciones con elementos faltantes (NA)? 
+    + ¿A qué meses corresponden las observaciones?
+* Temperatura máxima del viento en el mes de **mayo**.
+* Media del ozono en el mes de Julio (*Ojo con los NA*).
+* Mes donde la temperatura fue mayor.
+* Número de observaciones donde la temperatura fue mayor que 90 y además el ozono fue menos que 100 filtrando por mes (utilizar la función *length*).
+* Haciendo un estudio de los datos. ¿Qué podemos concluir? ¿Existe alguna relación entre las variables *Ozono*,*Temperatura*, y *Radiación Solar*? Se recomienda hacer la media mes a mes de cada variable. 

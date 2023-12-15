@@ -1,0 +1,87 @@
+---
+title: 'Ejercicio: Aprendizaje No Supervisado'
+author: "DSLab"
+date: "`r format(Sys.time(), '%B, %Y')`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+fontsize: 12pt
+mainfont: Roboto
+---
+-------------------------------------------------------------
+```{r setup, cache=FALSE, include=FALSE}
+library(knitr)
+output <- opts_knit$get("rmarkdown.pandoc.to")
+if (output=="latex") opts_chunk$set(tidy=TRUE,tidy.opts=list(blank=FALSE, width.cutoff=60))
+
+```
+
+En este ejercicio vamos a trabajar con los datos del *"Dow Jones Index Data Set"* que podéis descargar aquí: [DOW JONES INDEX](https://archive.ics.uci.edu/ml/datasets/Dow+Jones+Index). Se trata de datos semanales del Dow Jone Industrial Index. 
+
+## Datos
+
+En primer lugar descargamos y leemos los datos
+
+```{r}
+djidata=read.table("./dow_jones_index/dow_jones_index.data",header=TRUE,sep=",")
+djidata=as.data.frame(djidata)
+head(djidata)
+table(djidata$stock)
+```
+
+Cada fila corresponde a datos semanales de un valor bursatil. En este ejercicio vamos a trabajar con los datos correspondientes a la variable *close*, esto es, el valor de cada stock al cierre de la semana.
+
+Necesitamos transformar la variable de interés como sigue:
+
+```{r}
+djidata$close = as.numeric(sub("\\$","",djidata$close))
+```
+
+**1. Construir la matriz de series temporales**
+
+En primer lugar hemos de construir la matriz con las series que necesitamos. Necesitamos una matriz de series con las series por columnas para cada uno de los valores bursátiles.
+
+```{r}
+stocks=unique(djidata[,"stock"])
+n=dim(djidata[stocks=="AA",])[1]
+stocksdata=matrix(0,n,length(stocks))
+for (i in 1:length(stocks))
+  stocksdata[,i]=djidata[djidata$stock==stocks[i],"close"]
+colnames(stocksdata)=stocks
+
+stocksts1=as.ts(stocksdata[1:12,])
+stocksts2=as.ts(stocksdata[13:25,])
+stocksts=as.ts(stocksdata)
+```  
+
+**2. Representar las series con las que vamos a trabajar**
+
+**3. Realizar un análisis cluster usando como variables de interés la media y desviación estándar de cada serie**
+
+¿Pueden identificarse valores atípicos? 
+
+¿Existe relacion entre las dos variables consideradas en el análisis? ¿Como interpretas este resultado?
+
+**4. Representar las series escaladas**
+
+**5. Realizar un análisis Cluster para cada uno de los cuatrimestres**
+
+¿En cuantos grupos podemos dividir la muestra?
+
+Representar graficamente la media de cada cluster para tratar de identificar el comportamiento medio de los valores en cada cluster.
+
+**6. Análisis Cluster para todo el periodo**
+
+Elegir una tecnica para determinar el mejor numero de clusters.
+
+**7. Representar graficamente la media de cada cluster**
+
+**8. Localizar atípicos en los clusters**
+
+**9. Repetir el análisis, para todo el periodo, empleando la distancia DTW.**
+
+**10. Identificar las diferencias entre los dos análisis**
+ 
+ 
